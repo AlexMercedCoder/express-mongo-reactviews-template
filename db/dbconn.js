@@ -4,6 +4,7 @@
 const mongoose = require("mongoose");
 require("dotenv").config();
 const { MONGODB_URI, DB_NAME } = process.env;
+const {log} = require("mercedlogger")
 
 ///////////////////////////////////////
 // Config Object
@@ -21,13 +22,13 @@ mongoose.set("useCreateIndex", true);
 ///////////////////////////////////////
 const db = mongoose.connection;
 db.on("open", () => {
-  console.log("YOU ARE CONNECTED TO MONGO");
+  log.green("Mongo", "YOU ARE CONNECTED TO MONGO");
 })
   .on("close", () => {
-    console.log("YOU ARE DISCONNECTED TO MONGO");
+    log.cyan("Mongo", "YOU ARE DISCONNECTED TO MONGO");
   })
   .on("error", (err) => {
-    console.log(err);
+    log.red("Mongo", err);
   });
 
 ///////////////////////////////

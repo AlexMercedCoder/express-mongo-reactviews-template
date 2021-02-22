@@ -25,6 +25,7 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
 const methodOverride = require("method-override");
 const morgan = require("morgan");
+const {log} = require("mercedlogger")
 
 ///////////////////////////////
 // Set View Engine
@@ -66,5 +67,5 @@ app.use("/test", testRouter);
 //APP LISTENER
 ////////////////////////
 app.listen(PORT, () => {
-  console.log(`Your are listening on port ${PORT}`);
+  log.green("Server Started",`Your are listening on port ${PORT}`);
 });
